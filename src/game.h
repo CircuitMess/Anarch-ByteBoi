@@ -200,7 +200,7 @@ void SFG_init();
 #include "settings.h"
 
 #if SFG_AVR
-  #include <avr/pgmspace.h>
+  //#include <avr/pgmspace.h>
 
   #define SFG_PROGRAM_MEMORY const PROGMEM
   #define SFG_PROGRAM_MEMORY_U8(addr) pgm_read_byte(addr)
@@ -227,7 +227,7 @@ void SFG_init();
 #define RCL_HORIZONTAL_FOV SFG_FOV_HORIZONTAL
 #define RCL_VERTICAL_FOV SFG_FOV_VERTICAL
 
-#include "raycastlib.h" 
+#include "raycastlib.h"
 
 #include "constants.h"
 

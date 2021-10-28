@@ -24,6 +24,7 @@
 #define _SFG_GAME_H
 
 #include <stdint.h> // Needed for fixed width types, can easily be replaced.
+#include <ByteBoi.h>
 
 /*
   The following keys are mandatory to be implemented on any platform in order
@@ -3962,6 +3963,7 @@ void SFG_gameStepMenu()
 
       case SFG_MENU_ITEM_EXIT:
         SFG_game.continues = 0;
+        ByteBoi.backToLauncher();
         break;
 
       default:

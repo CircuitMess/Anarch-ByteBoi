@@ -3049,7 +3049,7 @@ void SFG_drawText(
       y += (SFG_FONT_CHARACTER_SIZE + 1) * size;
     }
 
-    pos++;    
+    pos++;
   }
 }
 
@@ -4455,7 +4455,7 @@ void SFG_drawMenu()
     #define SCROLL_PIXELS_PER_FRAME 1
   #endif
 
-  #define SELECTION_START_X ((SFG_GAME_RESOLUTION_X - 12 * SFG_FONT_SIZE_MEDIUM\
+  #define SELECTION_START_X ((SFG_GAME_RESOLUTION_X - 12 * SFG_FONT_SIZE_BIG\
     * (SFG_FONT_CHARACTER_SIZE + 1)) / 2)
 
   uint16_t scroll = (SFG_game.frame * SCROLL_PIXELS_PER_FRAME) / 64;
@@ -4467,13 +4467,13 @@ void SFG_drawMenu()
         SFG_getTexel(SFG_backgroundImages,((x + scroll) / BACKGROUND_SCALE)
           % SFG_TEXTURE_SIZE,y / BACKGROUND_SCALE));
 
-  uint16_t y = SFG_characterSize(SFG_FONT_SIZE_MEDIUM);
+  uint16_t y = SFG_characterSize(SFG_FONT_SIZE_BIG);
 
   SFG_blitImage(SFG_logoImage,SFG_GAME_RESOLUTION_X / 2 - 
     (SFG_TEXTURE_SIZE / 2) * SFG_FONT_SIZE_SMALL,y,SFG_FONT_SIZE_SMALL);
 
 #if SFG_GAME_RESOLUTION_Y > 50
-  y += 32 * SFG_FONT_SIZE_MEDIUM + SFG_characterSize(SFG_FONT_SIZE_MEDIUM);
+  y += 32 * SFG_FONT_SIZE_MEDIUM + SFG_characterSize(SFG_FONT_SIZE_BIG);
 #else
   y = 2;
 #endif
@@ -4501,7 +4501,7 @@ void SFG_drawMenu()
     uint8_t textLen = SFG_textLen(text);
 
     uint16_t drawX = (SFG_GAME_RESOLUTION_X -
-      SFG_textHorizontalSize(text,SFG_FONT_SIZE_MEDIUM)) / 2;
+      SFG_textHorizontalSize(text,SFG_FONT_SIZE_BIG)) / 2;
 
     uint8_t textColor = 7;
 
@@ -4510,28 +4510,28 @@ void SFG_drawMenu()
     else
       SFG_fillRectangle( // menu item highlight
         SELECTION_START_X,
-        y - SFG_FONT_SIZE_MEDIUM,
+        y - SFG_FONT_SIZE_BIG,
         SFG_GAME_RESOLUTION_X - SELECTION_START_X * 2,
-        SFG_characterSize(SFG_FONT_SIZE_MEDIUM),2);
+        SFG_characterSize(SFG_FONT_SIZE_BIG),2);
   
-    SFG_drawText(text,drawX,y,SFG_FONT_SIZE_MEDIUM,textColor,0,0);
+    SFG_drawText(text,drawX,y,SFG_FONT_SIZE_BIG,textColor,0,0);
 
     if ((item == SFG_MENU_ITEM_PLAY || item == SFG_MENU_ITEM_SOUND
          || item == SFG_MENU_ITEM_SHEAR) &&
         ((i != SFG_game.selectedMenuItem) || SFG_game.blink))
     {
       uint32_t x =
-        drawX + SFG_characterSize(SFG_FONT_SIZE_MEDIUM) * (textLen + 1);
+        drawX + SFG_characterSize(SFG_FONT_SIZE_BIG) * (textLen + 1);
 
       uint8_t c = 93;
 
       if (item == SFG_MENU_ITEM_PLAY)
-        SFG_drawNumber(SFG_game.selectedLevel + 1,x,y,SFG_FONT_SIZE_MEDIUM,c);
+        SFG_drawNumber(SFG_game.selectedLevel + 1,x,y,SFG_FONT_SIZE_BIG,c);
       else if (item == SFG_MENU_ITEM_SHEAR)
       {
         uint8_t n = (SFG_game.settings >> 2) & 0x03;
 
-        SFG_drawNumber(n == 3 ? 2 : n,x,y,SFG_FONT_SIZE_MEDIUM,c);
+        SFG_drawNumber(n == 3 ? 2 : n,x,y,SFG_FONT_SIZE_BIG,c);
       }
       else
       {
@@ -4540,11 +4540,11 @@ void SFG_drawMenu()
         settingText[0] = (SFG_game.settings & 0x01) ? 'S' : ' ';
         settingText[1] = (SFG_game.settings & 0x02) ? 'M' : ' ';
 
-        SFG_drawText(settingText,x,y,SFG_FONT_SIZE_MEDIUM,c,0,0);
+        SFG_drawText(settingText,x,y,SFG_FONT_SIZE_BIG,c,0,0);
       }
     }
 
-    y += SFG_characterSize(SFG_FONT_SIZE_MEDIUM) + SFG_FONT_SIZE_MEDIUM;
+    y += SFG_characterSize(SFG_FONT_SIZE_BIG) + SFG_FONT_SIZE_BIG;
     i++;
   }
   

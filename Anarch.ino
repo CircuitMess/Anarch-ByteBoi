@@ -113,8 +113,9 @@ void setup()
 {
 	Serial.begin(115200);
 	ByteBoi.begin();
+	Settings.get().volume = 255;
+	Playback.updateGain();
 	display = ByteBoi.getDisplay();
-	//ByteBoi.bindMenu();
 	BatteryPopup.enablePopups(true);
 	ByteBoi.setGameID("Anarc");
 	sprite = display->getBaseSprite();

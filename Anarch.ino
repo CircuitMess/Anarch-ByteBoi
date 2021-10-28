@@ -85,16 +85,16 @@ uint8_t SFG_load(uint8_t data[SFG_SAVE_SIZE])
 
 void SFG_playSound(uint8_t soundIndex, uint8_t volume)
 {
-	/*switch (soundIndex)
+	switch (soundIndex)
 	{
-		case 0: Playback.tone(120, 45); break; // shot
-		case 1: Playback.tone(200, 30); break; // door
-		case 2: Playback.tone(80, 60);  break; // explosion
-		case 3: Playback.tone(220, 50); break; // click
-		case 4: Playback.tone(180, 60); break; // plasma
-		case 5: Playback.tone(300, 10); break; // monster
+		case 0: Playback.tone(200, 45,Wave::SAW); break; // shot
+		case 1: Playback.tone(200, 30,Wave::SAW); break; // door
+		case 2: Playback.tone(80, 60,Wave::SAW);  break; // explosion
+		case 3: Playback.tone(220, 50,Wave::SAW); break; // click
+		case 4: Playback.tone(180, 60,Wave::SAW); break; // plasma
+		case 5: Playback.tone(300, 10,Wave::SQUARE); break; // monster
 		default: break;
-	}*/
+	}
 }
 
 // create button callbacks:
@@ -114,7 +114,7 @@ void setup()
 	Serial.begin(115200);
 	ByteBoi.begin();
 	display = ByteBoi.getDisplay();
-	ByteBoi.bindMenu();
+	//ByteBoi.bindMenu();
 	BatteryPopup.enablePopups(true);
 	ByteBoi.setGameID("Anarc");
 	sprite = display->getBaseSprite();

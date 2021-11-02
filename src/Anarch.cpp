@@ -22,6 +22,7 @@ void Anarch::start(){
 
 void Anarch::stop(){
 	baseSprite = screen.getSprite();
+	LoopManager::removeListener(this);
 }
 
 void Anarch::drawPixel(uint16_t x, uint16_t y, uint16_t colorIndex){

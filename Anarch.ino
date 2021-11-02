@@ -132,7 +132,6 @@ void setup()
 	display = ByteBoi.getDisplay();
 	BatteryPopup.enablePopups(true);
 	ByteBoi.setGameID("Anarc");
-	sprite = display->getBaseSprite();
 
 	SFG_init();
 

@@ -72,6 +72,13 @@ void SFG_setMusic(uint8_t value)
 
 void SFG_save(uint8_t data[SFG_SAVE_SIZE])
 {
+	return;
+
+	fs::File saveFile = ByteBoi.openData("/save", "w");
+	if(!saveFile) return;
+
+	saveFile.write(data, SFG_SAVE_SIZE);
+	saveFile.close();
 }
 
 void SFG_processEvent(uint8_t event, uint8_t data)
@@ -80,7 +87,15 @@ void SFG_processEvent(uint8_t event, uint8_t data)
 
 uint8_t SFG_load(uint8_t data[SFG_SAVE_SIZE])
 {
-	return 0;
+	return false;
+
+	fs::File saveFile = ByteBoi.openData("/save", "w");
+	if(!saveFile) return false;
+
+	saveFile.read(data, SFG_SAVE_SIZE);
+	saveFile.close();
+
+	return true;
 }
 
 void SFG_playSound(uint8_t soundIndex, uint8_t volume)

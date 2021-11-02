@@ -34,7 +34,6 @@
 #include "src/game.h"
 #include "src/Anarch.h"
 Display* display;
-Sprite* sprite;
 uint8_t buttons[7];
 uint16_t paletteRAM[256];
 Anarch* game;
@@ -87,12 +86,26 @@ void SFG_playSound(uint8_t soundIndex, uint8_t volume)
 {
 	switch (soundIndex)
 	{
-		case 0: Playback.tone(200, 45,Wave::SAW); break; // shot
-		case 1: Playback.tone(200, 30,Wave::SAW); break; // door
-		case 2: Playback.tone(80, 60,Wave::SAW);  break; // explosion
-		case 3: Playback.tone(220, 50,Wave::SAW); break; // click
-		case 4: Playback.tone(180, 60,Wave::SAW); break; // plasma
-		case 5: Playback.tone(300, 10,Wave::SQUARE); break; // monster
+		case 0:
+			Playback.tone(200, 100, Wave::SAW);
+			Playback.tone(200, 100, Wave::SINE);
+			break; // shot
+		case 1: // door
+			Playback.noTone();
+			Playback.tone(150, 800, Wave::SINE);
+			Playback.tone(300, 150, Wave::SINE);
+			break;
+		case 2: // explosion
+			Playback.noTone();
+			Playback.tone(120, 150, Wave::SAW);
+			Playback.tone(80, 400, Wave::SQUARE);
+			break;
+		case 3: Playback.tone(220, 80, Wave::SQUARE); break; // click
+		case 4: // plasma
+			Playback.tone(180, 120, Wave::SINE);
+			Playback.tone(180, 120, Wave::SQUARE);
+			break;
+		case 5: Playback.tone(300, 60, Wave::SQUARE); break; // monster
 		default: break;
 	}
 }

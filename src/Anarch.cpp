@@ -3,7 +3,7 @@
 extern uint8_t SFG_mainLoopBody();
 
 
-Anarch::Anarch(Display* display) : Context(*display), baseSprite(screen.getSprite()){
+Anarch::Anarch(Display* display) : Context(*display), display(display), baseSprite(screen.getSprite()){
 
 }
 
@@ -16,11 +16,12 @@ void Anarch::draw(){
 }
 
 void Anarch::start(){
+	baseSprite = display->getBaseSprite();
 	LoopManager::addListener(this);
 }
 
 void Anarch::stop(){
-
+	baseSprite = screen.getSprite();
 }
 
 void Anarch::drawPixel(uint16_t x, uint16_t y, uint16_t colorIndex){
@@ -30,5 +31,5 @@ void Anarch::drawPixel(uint16_t x, uint16_t y, uint16_t colorIndex){
 void Anarch::loop(uint micros){
 	SFG_mainLoopBody();
 	draw();
-	screen.commit();
+	display->commit();
 }

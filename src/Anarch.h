@@ -25,6 +25,7 @@ public:
 	void drawPixel(uint16_t x, uint16_t y, uint16_t colorIndex);
 
 private:
+	Display* display;
 	Sprite *baseSprite;
 };
 

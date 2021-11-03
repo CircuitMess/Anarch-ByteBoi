@@ -4169,21 +4169,22 @@ static inline void SFG_clearScreen(uint8_t color)
 */
 void SFG_drawMap()
 {
-  SFG_clearScreen(0);
-   
+	SFG_clearScreen(0);
+	int16_t MAP_SIZE = 64;
+	int16_t MAP_PIXEL_SIZE = 2;
   uint16_t maxJ =
-    (SFG_MAP_PIXEL_SIZE * SFG_MAP_SIZE) < SFG_GAME_RESOLUTION_Y ?
-    (SFG_MAP_SIZE) : (SFG_GAME_RESOLUTION_Y / SFG_MAP_PIXEL_SIZE);
+    (MAP_PIXEL_SIZE * MAP_SIZE) < SFG_GAME_RESOLUTION_Y ?
+    (MAP_SIZE) : (SFG_GAME_RESOLUTION_Y / MAP_PIXEL_SIZE);
 
   uint16_t maxI =
-    (SFG_MAP_PIXEL_SIZE * SFG_MAP_SIZE) < SFG_GAME_RESOLUTION_X ?
-    (SFG_MAP_SIZE) : (SFG_GAME_RESOLUTION_X / SFG_MAP_PIXEL_SIZE);
+    (MAP_PIXEL_SIZE * MAP_SIZE) < SFG_GAME_RESOLUTION_X ?
+    (MAP_SIZE) : (SFG_GAME_RESOLUTION_X / MAP_PIXEL_SIZE);
 
   uint16_t topLeftX =
-    (SFG_GAME_RESOLUTION_X - (maxI * SFG_MAP_PIXEL_SIZE)) / 2;
+    (SFG_GAME_RESOLUTION_X - (maxI * MAP_PIXEL_SIZE)) / 2;
 
   uint16_t topLeftY =
-    (SFG_GAME_RESOLUTION_Y - (maxJ * SFG_MAP_PIXEL_SIZE)) / 2;
+    (SFG_GAME_RESOLUTION_Y - (maxJ * MAP_PIXEL_SIZE)) / 2;
 
   uint16_t x;
   uint16_t y = topLeftY;
@@ -4229,14 +4230,14 @@ void SFG_drawMap()
         }
       }
 
-      for (int_fast16_t k = 0; k < SFG_MAP_PIXEL_SIZE; ++k)
-        for (int_fast16_t l = 0; l < SFG_MAP_PIXEL_SIZE; ++l)
+      for (int_fast16_t k = 0; k < MAP_PIXEL_SIZE; ++k)
+        for (int_fast16_t l = 0; l < MAP_PIXEL_SIZE; ++l)
           SFG_setGamePixel(x + l, y + k,color);
 
-      x += SFG_MAP_PIXEL_SIZE;
+      x += MAP_PIXEL_SIZE;
     }
 
-    y += SFG_MAP_PIXEL_SIZE;
+    y += MAP_PIXEL_SIZE;
   } 
 }
 

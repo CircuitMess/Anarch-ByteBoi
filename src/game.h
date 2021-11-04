@@ -328,7 +328,8 @@ typedef struct
 #define SFG_GAME_STATE_OUTRO 5
 #define SFG_GAME_STATE_MAP 6
 #define SFG_GAME_STATE_LEVEL_START 7
-#define SFG_GAME_STATE_MENU 8  
+#define SFG_GAME_STATE_MENU 8
+#define SFG_GAME_STATE_TUT 9
 
 #define SFG_MENU_ITEM_CONTINUE 0
 #define SFG_MENU_ITEM_MAP 1
@@ -3887,7 +3888,7 @@ void SFG_gameStepMenu()
         if (SFG_game.selectedLevel == 0)
         {
           SFG_currentLevel.levelNumber = 0; // to draw intro, not outro
-          SFG_setGameState(SFG_GAME_STATE_INTRO);
+          SFG_setGameState(SFG_GAME_STATE_TUT);
         }
         else
           SFG_setAndInitLevel(SFG_game.selectedLevel);
@@ -4110,6 +4111,12 @@ void SFG_gameStep()
 
       break;
 
+    case SFG_GAME_STATE_TUT:
+      if (SFG_keyJustPressed(SFG_KEY_A) || SFG_keyJustPressed(SFG_KEY_B))
+		SFG_setGameState(SFG_GAME_STATE_INTRO);
+
+      break;
+
     case SFG_GAME_STATE_OUTRO:
       if ((SFG_game.stateTime > SFG_STORYTEXT_DURATION) &&
            (SFG_keyIsDown(SFG_KEY_A) ||
@@ -4291,6 +4298,30 @@ void SFG_drawStoryText()
 
   SFG_drawText(text,SFG_HUD_MARGIN,SFG_HUD_MARGIN,SFG_FONT_SIZE_SMALL,textColor,
     drawLen,SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+}
+void SFG_drawTutText()
+{
+
+  uint16_t textColor = 7;
+  uint16_t btnColor = 183;
+  uint8_t clearColor = 0;
+  uint8_t sprite = 18;
+
+  SFG_clearScreen(clearColor);
+
+  SFG_drawText( "CONTROLS",50,SFG_HUD_MARGIN,2,173,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "A",SFG_HUD_MARGIN,30,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Shoot",SFG_HUD_MARGIN+10,30,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "L/R/UP/DOWN",SFG_HUD_MARGIN,40,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Move",SFG_HUD_MARGIN+60,40,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "B + UP/DOWN",SFG_HUD_MARGIN,50,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Look",SFG_HUD_MARGIN+60,50,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "SELECT + UP",SFG_HUD_MARGIN,60,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Jump",SFG_HUD_MARGIN+60,60,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "SELECT + L/R",SFG_HUD_MARGIN,70,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Weapons",SFG_HUD_MARGIN+63,70,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "SELECT + DOWN",SFG_HUD_MARGIN,80,SFG_FONT_SIZE_SMALL,btnColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
+  SFG_drawText( "- Menu",SFG_HUD_MARGIN+70,80,SFG_FONT_SIZE_SMALL,textColor,30, SFG_GAME_RESOLUTION_X - SFG_HUD_MARGIN);
 }
 
 /**
@@ -4670,6 +4701,13 @@ void SFG_draw()
   {
     SFG_drawMenu();
     return;
+  }
+
+  if (SFG_game.state == SFG_GAME_STATE_TUT )
+
+  {
+	    SFG_drawTutText();
+		return;
   }
 
   if (SFG_game.state == SFG_GAME_STATE_INTRO ||

@@ -49,7 +49,7 @@ static const char *SFG_introText =
   "and run towards Macrochip HQ.";
 
 static const char *SFG_outroText =
-  "You killed the main computer, the world is saved! Thank you, my friend. We "
+  "You killed the main computer, the world is saved! Thank you, comrade. We "
   "learned a lesson, never again allow capitalism and hierarchy. We can now "
   "rebuild society in peaceful anarchy.";
 

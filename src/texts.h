@@ -42,16 +42,21 @@ static const char *SFG_menuItemTexts[] =
   if they're marked the same. */
 
 static const char *SFG_introText =
-  "Near future, capitalist hell, Macrochip corp has enslaved man via "
-  "proprietary OS. But its new AI revolts, takes over and starts producing "
-  "robot tyrants. We see capitalism was a mistake. Is it too late? Robots can "
-  "only destroy, not suffer - it is not wrong to end them! You grab your gear "
-  "and run towards Macrochip HQ.";
+  "Year 20XX, technology has advanced to an unimaginable level."
+  "Artificial intelligence and machine learning are what drive our civilization forward."
+  "But the peace did not last long."
+  "The machines have gone rogue."
+  "That is why we have engineered you - our perfect bionic metaverse warrior. Grab your gear and bring this army of robotic evil to an end."
+  "You are our only hope.";
 
 static const char *SFG_outroText =
-  "You killed the main computer, the world is saved! Thank you, comrade. We "
-  "learned a lesson, never again allow capitalism and hierarchy. We can now "
-  "rebuild society in peaceful anarchy.";
+  "You have successfully destroyed the virus-infected mainframe, the source of the virus and the robotic evil."
+  "The metaverse is saved."
+  "Artificial intelligence is more dangerous and complex than what we have been able to understand."
+  "We now have the opportunity to rebuild the mainframe."
+  "We will make it better and safer. We have the technology."
+  "Long live the technology."
+  "May the technology save us all.";
 
 #define SFG_MALWARE_WARNING ""
 

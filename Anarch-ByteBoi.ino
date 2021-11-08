@@ -34,6 +34,7 @@
                           to 1 which will show the "exit" option in the menu. */
 #include "src/game.h"
 #include "src/Anarch.h"
+#include <SleepService.h>
 Display* display;
 uint8_t buttons[7];
 uint16_t paletteRAM[256];
@@ -142,6 +143,7 @@ void setup()
 {
 	Serial.begin(115200);
 	ByteBoi.begin();
+	Sleep.begin();
 	Settings.get().volume = 255;
 	Playback.updateGain();
 	display = ByteBoi.getDisplay();

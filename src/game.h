@@ -3929,8 +3929,8 @@ void SFG_gameStepMenu()
       case SFG_MENU_ITEM_SOUND:
         SFG_LOG("sound changed");
 
-        SFG_game.settings = 
-          (SFG_game.settings & ~0x03) | ((SFG_game.settings + 1)  & 0x03);
+        SFG_game.settings = SFG_game.settings ^ 0b01;
+        SFG_game.settings = SFG_game.settings & ~0b10;
 
         SFG_playGameSound(3,SFG_MENU_CLICK_VOLUME);
 
@@ -4569,12 +4569,9 @@ void SFG_drawMenu()
       }
       else
       {
-        char settingText[3] = "  ";
+      	const char* settingText = (SFG_game.settings & 0x01) ? "ON" : "OFF";
 
-        settingText[0] = (SFG_game.settings & 0x01) ? 'S' : ' ';
-        settingText[1] = (SFG_game.settings & 0x02) ? 'M' : ' ';
-
-        SFG_drawText(settingText,x,y,SFG_FONT_SIZE_BIG,c,0,0);
+        SFG_drawText(settingText,x-3,y,SFG_FONT_SIZE_BIG,c,0,0);
       }
     }
 

@@ -211,7 +211,7 @@
 /**
   Default value of the settings byte.
 */
-#define SFG_DEFAULT_SETTINGS 0x03
+#define SFG_DEFAULT_SETTINGS 0x01
 
 // -----------------------------------------------------------------------------
 // derived constants
